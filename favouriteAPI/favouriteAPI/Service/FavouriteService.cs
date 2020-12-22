@@ -1,9 +1,8 @@
-﻿using favouriteAPI.Models;
+﻿using favouriteAPI.Exceptions;
+using favouriteAPI.Models;
 using favouriteAPI.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace favouriteAPI.Service
 {
@@ -16,17 +15,46 @@ namespace favouriteAPI.Service
         }
         public Favourite AddFavourite(Favourite favourite)
         {
-            return repo.AddFavourite(favourite);
+            var availability = repo.GetFavourites().Where(c => c.Id == favourite.Id).FirstOrDefault();
+            //var availability = repo.IsFavouriteExist(favourite);
+            if (availability==null)
+            {
+                return repo.AddFavourite(favourite);
+
+            }
+            else
+            {
+                throw new AlreadyFavourite(" already  Favourite");
+            }
+           
         }
 
         public bool DeleteFavourite(int id, string title)
-        {
-            return repo.DeleteFavourite(id, title);
+        {         
+              var availability = repo.IsFavouriteExistWithId(id);
+                if (availability)
+                {
+                return repo.DeleteFavourite(id, title);
+                }
+                else
+                {
+                    throw new DatabaseNotFound("favourite does not exist");
+                }
+                
         }
 
         public List<Favourite> GetFavourite(int id)
         {
-            return repo.GetFavourite(id);
+            var availability = repo.IsFavouriteExistWithId(id);
+            if (availability)
+            {
+                return repo.GetFavourite(id);
+            }
+            else
+            {
+                throw new DatabaseNotFound("data does not Exist");
+            }
+            
         }
 
         public List<Favourite> GetFavourites()

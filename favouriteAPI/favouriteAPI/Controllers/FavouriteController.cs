@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using favouriteAPI.Exceptions;
+﻿using favouriteAPI.Exceptions;
 using favouriteAPI.Models;
 using favouriteAPI.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace favouriteAPI.Controllers
@@ -52,10 +47,8 @@ namespace favouriteAPI.Controllers
         public IActionResult AddFavourite([FromBody] Favourite fav)
         {
             try
-            {
-                _service.AddFavourite(fav);
-                return Created("api/favourite", 201);
-                // return Created("", _service.AddFavourite(fav));
+            {              
+                 return Created("", _service.AddFavourite(fav));
             }
             catch (AlreadyFavourite ex)
             {
@@ -72,8 +65,7 @@ namespace favouriteAPI.Controllers
         {
             try
             {
-                _service.DeleteFavourite(id, title);
-                return StatusCode(201, "favourite deleted!!");
+                return Ok(_service.DeleteFavourite(id, title));
             }
             catch (DatabaseNotFound ex)
             {

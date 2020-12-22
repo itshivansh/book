@@ -1,9 +1,7 @@
 ﻿using favouriteAPI.Models;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace favouriteAPI.Repository
 {
@@ -55,6 +53,32 @@ namespace favouriteAPI.Repository
             return db.Fav.Find(favourite => true).ToList();
 
             //return db.Favourites.ToList();
+        }
+
+        public bool IsFavouriteExist(Favourite favourite)
+        {
+            var favouriteExist = db.Fav.Find(favourites => favourites.Id == favourite.Id);
+            if (favouriteExist != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsFavouriteExistWithId(int id)
+        {
+            var favouriteExist = db.Fav.Find(x => x.Id == id).FirstOrDefault();
+            if (favouriteExist != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

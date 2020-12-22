@@ -32,6 +32,19 @@ namespace AuthenticationService
         {
             services.AddControllers();
             services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+
+                builder => builder.WithOrigins("http:localhost:4200")
+
+                .AllowAnyMethod()
+
+                .AllowAnyHeader()
+
+                .AllowCredentials());
+
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -52,6 +65,11 @@ namespace AuthenticationService
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

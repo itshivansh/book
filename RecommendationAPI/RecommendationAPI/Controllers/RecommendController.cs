@@ -38,7 +38,7 @@ namespace RecommendationAPI.Controllers
         {
             return Created("", service.AddRecommands(value));
         }
-        [HttpDelete("{id:int}/{title:string}")]
+        [HttpDelete("{id:int}/{title}")]
         public IActionResult Delete(int id,string title)
         {
             return Ok(service.RemoveRecommend(id,title));

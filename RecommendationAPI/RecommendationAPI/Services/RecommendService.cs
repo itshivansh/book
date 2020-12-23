@@ -11,7 +11,7 @@ namespace RecommendationAPI.Services
     public class RecommendService : IRecommendService
     {
         private readonly IRecommendRepository repository;
-        private string NotFoundText = "This category id not found";
+        private string NotFoundText = "This recommend id not found";
         public RecommendService(IRecommendRepository _repository)
         {
             this.repository = _repository;

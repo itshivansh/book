@@ -9,8 +9,8 @@ import { UsersComponent } from './Components/users/users.component';
 import { RegistrationComponent } from './Components/Users/registration/registration.component';
 import { UserService } from './Services/user.service';
 import { LoginComponent } from './Components/Users/login/login.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
   declarations: [

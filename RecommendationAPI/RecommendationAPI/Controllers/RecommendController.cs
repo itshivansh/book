@@ -11,7 +11,7 @@ using RecommendationAPI.Utilities;
 
 namespace RecommendationAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ExceptionHandler]
     [Route("api/[controller]")]
     [ApiController]

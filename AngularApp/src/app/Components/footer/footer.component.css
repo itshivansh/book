@@ -1,23 +1,21 @@
 .footer-container 
 {
-  background-color: #141414;
   position: relative;
 }
 .footer-content {
-    max-width: 1000px;
-    margin: auto;
-    padding: 0 40px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 40px;
 }
 .copyright 
 {
-        flex-direction: column;
-        font-size: 14px;
-        color: #444;
+  flex-direction: column;
+  font-size: 14px;
 }
 ul 
 {
-    padding: 0;
-    list-style: none;
+  padding: 0;
+  list-style: none;
 }        
 ul,a 
 {
@@ -33,9 +31,9 @@ ul,a
   margin: 0 15px;
 }
 .icon:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }  
-.footer-image 
+.footer-img
 {
   position: absolute;
   right: 0;

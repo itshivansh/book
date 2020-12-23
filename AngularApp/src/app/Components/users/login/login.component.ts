@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       (res:any)=>{
         localStorage.setItem('token', res.token);
         alert("Login sucessfull");
+        console.log(res);
        // this.router.navigateByUrl('/home');
       },
       err=>{

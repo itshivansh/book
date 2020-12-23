@@ -11,7 +11,7 @@ import { UserService } from './Services/user.service';
 import { LoginComponent } from './Components/Users/login/login.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
-
+import {DashboardComponent} from './Components/dashboard/dashboard.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +19,8 @@ import { FooterComponent } from './Components/footer/footer.component';
     RegistrationComponent,
     LoginComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -29,8 +29,12 @@ export class UserService {
     register(){
       var body={
         UserId : this.registerForm.value.UserId,
-        Password :this .registerForm.value.Password
+        Password :this .registerForm.value.Passwords.Password
       }
       return this.http.post(this.BaseUrl+'Auth/register',body);
+    }
+
+    login(formData){
+      return this.http.post(this.BaseUrl+'Auth/login',formData);
     }
   }

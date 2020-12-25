@@ -11,7 +11,9 @@ import { UserService } from './Services/user.service';
 import { LoginComponent } from './Components/Users/login/login.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
-import {DashboardComponent} from './Components/dashboard/dashboard.component'
+import {DashboardComponent} from './Components/dashboard/dashboard.component';
+import { SearchService } from './Services/search.service';
+import { SearchComponent } from './Components/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import {DashboardComponent} from './Components/dashboard/dashboard.component'
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import {DashboardComponent} from './Components/dashboard/dashboard.component'
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService,SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

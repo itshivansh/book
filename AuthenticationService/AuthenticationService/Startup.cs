@@ -36,7 +36,7 @@ namespace AuthenticationService
             {
                 options.AddPolicy("CorsPolicy",
 
-                builder => builder.WithOrigins("http:localhost:4200")
+                builder => builder.AllowAnyOrigin()
 
                 .AllowAnyMethod()
 

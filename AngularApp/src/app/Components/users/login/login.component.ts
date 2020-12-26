@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit {
     this.service.login(this.loginUser).subscribe(
       (res:any)=>{
         localStorage.setItem('token', res.token);
-        alert("Login sucessfull");
-       // this.router.navigateByUrl('/home');
+        this.router.navigate(['/search']);
       },
       err=>{
         if(err.status==400){

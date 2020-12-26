@@ -5,9 +5,10 @@ import { RegistrationComponent } from './Components/Users/registration/registrat
 import { UsersComponent } from './Components/users/users.component';
 import {DashboardComponent} from './Components/dashboard/dashboard.component'
 import { SearchComponent } from './Components/search/search.component';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 const routes: Routes = [
-  {path:'',redirectTo:'/dashboard',pathMatch:'full'},
+  {path:'',redirectTo:'dashboard',pathMatch:"full"},
   {path:'dashboard',component:DashboardComponent},
   {path:'search',component:SearchComponent},
   {path:'users',component:UsersComponent,

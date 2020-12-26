@@ -12,7 +12,7 @@ export class SearchService {
 
 
   getSearchList(searchData){
-      return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=${searchData.category}&maxResults=10&key=${this.apiKey}`);
+      return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=${searchData.category}&maxResults=12&key=${this.apiKey}`);
      //return this.http.get("http://openlibrary.org/search?json/author="+searchData);
     }
   }

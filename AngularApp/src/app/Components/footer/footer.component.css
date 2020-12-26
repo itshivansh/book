@@ -1,9 +1,12 @@
 .footer-container 
 {
-  position: relative;
+  position: relative;;
+  /* left:0;
+  bottom: 0;
+  width: 100%; */
 }
 .footer-content {
-  max-width: 1000px;
+  max-width: 100%;
   margin: auto;
   padding: 0 40px;
 }
@@ -20,7 +23,7 @@ ul
 ul,a 
 {
     color: inherit;
-}
+} 
 .social-media 
 {
     display: flex;

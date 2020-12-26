@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +14,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 import {DashboardComponent} from './Components/dashboard/dashboard.component';
 import { SearchService } from './Services/search.service';
 import { SearchComponent } from './Components/search/search.component';
+import { AuthInterceptor } from './guards/auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,11 @@ import { SearchComponent } from './Components/search/search.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService,SearchService],
+  providers: [UserService,SearchService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

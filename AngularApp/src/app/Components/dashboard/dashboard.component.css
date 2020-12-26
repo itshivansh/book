@@ -1,12 +1,16 @@
 img{
     height: 200px;
-    width: 1365px;
+    width: 1347px;
 }
 
-.jumbotron{
+.jumbotron-billboard{
     margin:0px;
     border:0px;
-
+    background-image: url("../../../assets/img/search_section2.jpg");
+    background-position: center;
+    background-size: cover;
+    color: black;
 }
+
 
     

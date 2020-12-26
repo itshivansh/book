@@ -9,6 +9,7 @@ import { SearchService } from 'src/app/Services/search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
+
 export class SearchComponent implements OnInit {
 
   constructor(private builder:FormBuilder,private router:Router, public service:SearchService) { }
@@ -20,9 +21,12 @@ export class SearchComponent implements OnInit {
   items: Array<any>;
   gridColumns=4;
   searchResult:SearchResult;
+  submitted=false;
   ngOnInit(): void {
   }
-onSubmit(){
+
+  onSubmit(){
+  this.submitted=true;
   this.service.getSearchList(this.searchList.value).subscribe(
   data=>{
     this.items=data['items'];
@@ -30,7 +34,6 @@ onSubmit(){
   },
   err=>{
     alert("Enter category to search");
- });
- this.searchList.reset();
+    });
   }
 }

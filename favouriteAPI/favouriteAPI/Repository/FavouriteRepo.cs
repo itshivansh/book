@@ -14,6 +14,16 @@ namespace favouriteAPI.Repository
         }
         public Favourite AddFavourite(Favourite favourite)
         {
+            var fav = this.db.Fav.AsQueryable();
+            if (fav.Count() == 0)
+            {
+                favourite.Id = 1;
+            }
+            else
+            {
+                int max = fav.Max(c => c.Id) + 1;
+                favourite.Id = max;
+            }
             db.Fav.InsertOne(favourite);
            // db.Favourites.Add(favourite);
             //db.SaveChanges();

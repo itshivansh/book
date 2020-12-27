@@ -15,6 +15,7 @@ import {DashboardComponent} from './Components/dashboard/dashboard.component';
 import { SearchService } from './Services/search.service';
 import { SearchComponent } from './Components/search/search.component';
 import { AuthInterceptor } from './guards/auth.interceptor';
+import { FavouriteComponent } from './Components/favourite/favourite.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthInterceptor } from './guards/auth.interceptor';
     FooterComponent,
     DashboardComponent,
     SearchComponent,
+    FavouriteComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,11 +37,11 @@ import { AuthInterceptor } from './guards/auth.interceptor';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService,SearchService,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
+  providers: [UserService,SearchService,
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: AuthInterceptor,
+  //   multi: true
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

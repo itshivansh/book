@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { title } from 'process';
+import { Favourite } from 'src/app/models/fav';
 import { SearchResult } from 'src/app/models/search-result';
+import { FavouriteService } from 'src/app/Services/favourite.service';
 import { SearchService } from 'src/app/Services/search.service';
 
 @Component({
@@ -12,7 +15,7 @@ import { SearchService } from 'src/app/Services/search.service';
 
 export class SearchComponent implements OnInit {
 
-  constructor(private builder:FormBuilder,private router:Router, public service:SearchService) { }
+  constructor(private builder:FormBuilder,private router:Router, public service:SearchService,public favService:FavouriteService) { }
 
   searchList=this.builder.group({
     category:['']
@@ -20,13 +23,17 @@ export class SearchComponent implements OnInit {
 
   items: Array<any>;
   gridColumns=4;
-  searchResult:SearchResult;
+  fav:Favourite;
   submitted=false;
   ngOnInit(): void {
+    this.favService.getFavourite().subscribe(
+      data=>{
+        console.log(data);
+      }
+    )
   }
 
   onSubmit(){
-  this.submitted=true;
   this.service.getSearchList(this.searchList.value).subscribe(
   data=>{
     this.items=data['items'];
@@ -34,6 +41,38 @@ export class SearchComponent implements OnInit {
   },
   err=>{
     alert("Enter category to search");
+    console.log(err);
     });
   }
+
+  onFav(items){
+    if(localStorage.getItem('token')==null){
+       this.router.navigate(['/users/login'])
+     }
+    else{
+      this.fav=new Favourite();
+      localStorage.setItem('title',items.volumeInfo.title);
+      localStorage.setItem('author',items.volumeInfo.authors)
+      localStorage.setItem('urlImg',items.volumeInfo.imageLinks.thumbnail);
+      localStorage.setItem('webUrl',items.accessInfo.webReaderLink);
+      var bookTitle=localStorage.getItem('title');
+      var bookImgUrl=localStorage.getItem('urlImg');
+      var bookReading=localStorage.getItem('webUrl');
+      var bookAuthor=localStorage.getItem('author');
+      this.fav.title=bookTitle;
+      this.fav.urlImg=bookImgUrl;
+      this.fav.webUrl=bookReading;
+      this.fav.author=bookAuthor;
+      this.fav.userId=localStorage.getItem('currentUser');
+      console.log(this.fav);
+      this.favService.postFavourite(this.fav).subscribe(
+        data=>{
+          console.log(data);
+        },
+        err=>{
+          console.log(err);
+        }
+    );
+  }
+}
 }

@@ -42,7 +42,7 @@ namespace AuthenticationService
 
                 .AllowAnyHeader()
 
-                .AllowCredentials());
+                );
 
             });
 

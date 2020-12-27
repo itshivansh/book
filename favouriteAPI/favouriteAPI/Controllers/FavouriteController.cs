@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace favouriteAPI.Controllers
 {
-    [Authorize]
+   // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FavouriteController : ControllerBase

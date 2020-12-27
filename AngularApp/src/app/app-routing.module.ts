@@ -6,11 +6,13 @@ import { UsersComponent } from './Components/users/users.component';
 import {DashboardComponent} from './Components/dashboard/dashboard.component'
 import { SearchComponent } from './Components/search/search.component';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { FavouriteComponent } from './Components/favourite/favourite.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard',pathMatch:"full"},
   {path:'dashboard',component:DashboardComponent},
   {path:'search',component:SearchComponent},
+  {path:'favourite',component:FavouriteComponent},
   {path:'users',component:UsersComponent,
   children:[
     {path:'registration',component:RegistrationComponent},

@@ -27,7 +27,7 @@ namespace favouriteAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            this.ValidateToken(Configuration, services);
+            //this.ValidateToken(Configuration, services);
             services.AddScoped<IFavouriteRepo, FavouriteRepo>();
             services.AddScoped<IFavouriteService, FavouriteService>();
             services.AddDbContext<FavouriteDbContext>();
@@ -37,6 +37,22 @@ namespace favouriteAPI
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Favourite API", Version = "v1" });
             //});
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+
+                builder => builder.AllowAnyOrigin()
+
+                .AllowAnyMethod()
+
+                .AllowAnyHeader()
+
+                );
+
+            });
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
@@ -66,6 +82,7 @@ namespace favouriteAPI
             });
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -73,6 +90,10 @@ namespace favouriteAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
             app.UseAuthentication();

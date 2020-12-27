@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/Services/user.service';
 export class RegistrationComponent implements OnInit {
 
 user:User;
-  constructor(public service:UserService) {}
+  constructor(public service:UserService,private router:Router) {}
   
 
   ngOnInit(): void {
@@ -28,6 +29,7 @@ user:User;
         alert("Registered successfully");
         console.log(data);
         this.service.registerForm.reset();
+        this.router.navigate(['/users/login']);
       },
       err=>{
         alert("Registration failed")

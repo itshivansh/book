@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -11,15 +11,18 @@ export class FavouriteService {
   constructor(private http:HttpClient) { }
 
   getFavourite(userId:any){
-     return this.http.get(this.url+"Favourite/"+userId);
+    var tokenHeader=new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
+     return this.http.get(this.url+"Favourite/"+userId,{headers : tokenHeader});
   }
 
   postFavourite(body){
-    return this.http.post(this.url+"Favourite/Add",body)
+    var tokenHeader=new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
+    return this.http.post(this.url+"Favourite/Add",body,{headers : tokenHeader})
   }
 
   deleteFavourite(userId,title){
-    return this.http.delete(this.url+`Favourite/${userId}/${title}`)
+    var tokenHeader=new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
+    return this.http.delete(this.url+`Favourite/${userId}/${title}`,{headers : tokenHeader})
   }
 
   getRecommendation(){

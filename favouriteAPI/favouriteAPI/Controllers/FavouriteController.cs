@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace favouriteAPI.Controllers
 {
-   // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FavouriteController : ControllerBase
@@ -29,7 +28,8 @@ namespace favouriteAPI.Controllers
                 return Conflict(ex.Message);
             }
         }
-        //[EnableCors("Policy1")]
+
+        [Authorize]
         [HttpGet("{userId}")]
         public IActionResult GetFavourite(string userId )
         {
@@ -42,8 +42,8 @@ namespace favouriteAPI.Controllers
                 return Conflict(ex.Message);
             }
         }
-       
-        //[EnableCors("Policy2")]
+
+        [Authorize]
         [HttpPost]
         [Route("Add")]
         public IActionResult AddFavourite([FromBody] Favourite fav)
@@ -61,7 +61,7 @@ namespace favouriteAPI.Controllers
             //    return StatusCode(500, "Internal Server Error");
             //}
         }
-       // [EnableCors("Policy3")]
+        [Authorize]
         [HttpDelete("{userId}/{title}")]
         public IActionResult Delete(string userId)
         {

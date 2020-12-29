@@ -27,7 +27,7 @@ namespace favouriteAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //this.ValidateToken(Configuration, services);
+            this.ValidateToken(Configuration, services);
             services.AddScoped<IFavouriteRepo, FavouriteRepo>();
             services.AddScoped<IFavouriteService, FavouriteService>();
             services.AddDbContext<FavouriteDbContext>();

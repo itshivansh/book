@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Favourite } from 'src/app/models/fav';
 import { FavouriteService } from 'src/app/Services/favourite.service';
 
@@ -10,7 +11,7 @@ import { FavouriteService } from 'src/app/Services/favourite.service';
 export class RecommendationComponent implements OnInit {
 recommend:string[]=[];
 fav:Favourite;
-  constructor(private recService:FavouriteService) { }
+  constructor(private recService:FavouriteService,private router:Router) { }
 
   ngOnInit(): void {
     this.recService.getRecommendation().subscribe(
@@ -38,10 +39,10 @@ fav:Favourite;
     console.log(this.fav);
     this.recService.postFavourite(this.fav).subscribe(
       data=>{
-        console.log(data);
+        alert("Added to Favourite")
       },
       err=>{
-        console.log(err);
+        alert("Already favourite");
       }
   );
 }

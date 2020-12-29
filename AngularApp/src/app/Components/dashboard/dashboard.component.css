@@ -1,6 +1,18 @@
+.carousel-control-prev:hover{
+    color: black;
+    background: whitesmoke;
+}
+.carousel-control-next{
+    color:black;
+    background: whitesmoke;
+}
+
 img{
-    height: 200px;
-    width: 1347px;
+    width: 100%;
+}
+.carousel{
+margin-bottom: 0%;
+padding-bottom: 0%;
 }
 
 .jumbotron-billboard{
@@ -10,6 +22,8 @@ img{
     background-position: center;
     background-size: cover;
     color: black;
+    margin-top: 0%;
+    padding-top: 0%;
 }
 
 

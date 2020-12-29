@@ -15,8 +15,7 @@ namespace favouriteAPI.Service
         }
         public Favourite AddFavourite(Favourite favourite)
         {
-            var availability = repo.GetFavourites().Where(c => c.Id == favourite.Id).FirstOrDefault();
-            //var availability = repo.IsFavouriteExist(favourite);
+            var availability = repo.GetFavourites().Where(c => c.Title == favourite.Title && c.UserId==favourite.UserId).FirstOrDefault();
             if (availability==null)
             {
                 return repo.AddFavourite(favourite);

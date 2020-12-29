@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'',redirectTo:'dashboard',pathMatch:"full"},
   {path:'dashboard',component:DashboardComponent},
   {path:'search',component:SearchComponent},
-  {path:'favourite',component:FavouriteComponent},
+  {path:'favourite',component:FavouriteComponent,canActivate:[AuthGuard]},
   {path:'users',component:UsersComponent,
   children:[
     {path:'registration',component:RegistrationComponent},

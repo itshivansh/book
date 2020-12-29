@@ -26,11 +26,6 @@ export class SearchComponent implements OnInit {
   fav:Favourite;
   submitted=false;
   ngOnInit(): void {
-    this.favService.getFavourite().subscribe(
-      data=>{
-        console.log(data);
-      }
-    )
   }
 
   onSubmit(){

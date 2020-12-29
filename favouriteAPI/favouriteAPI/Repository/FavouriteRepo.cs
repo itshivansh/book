@@ -30,9 +30,9 @@ namespace favouriteAPI.Repository
             return favourite;
         }
 
-        public bool DeleteFavourite(int id, string title)
+        public bool DeleteFavourite(string userId)
         {
-            DeleteResult deleteResult = db.Fav.DeleteOne(c => c.Id == id);
+            DeleteResult deleteResult = db.Fav.DeleteOne(c => c.UserId ==userId);
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
 
             //var article = db.Favourites.Where(x => x.Id == id && x.Title == title).FirstOrDefault();
@@ -45,11 +45,11 @@ namespace favouriteAPI.Repository
             //return false;
         }
 
-        public List<Favourite> GetFavourite(int id)
+        public List<Favourite> GetFavourite(string userId)
         {
 
             List<Favourite> favourite = new List<Favourite>();
-            favourite = db.Fav.Find(name => name.Id == id).ToList();
+            favourite = db.Fav.Find(name => name.UserId == userId).ToList();
             return favourite;
 
             //List<Favourite> favourites = new List<Favourite>();
@@ -67,7 +67,7 @@ namespace favouriteAPI.Repository
 
         public bool IsFavouriteExist(Favourite favourite)
         {
-            var favouriteExist = db.Fav.Find(favourites => favourites.Id == favourite.Id);
+            var favouriteExist = db.Fav.Find(favourites => favourites.UserId == favourite.UserId);
             if (favouriteExist != null)
             {
                 return true;
@@ -78,9 +78,9 @@ namespace favouriteAPI.Repository
             }
         }
 
-        public bool IsFavouriteExistWithId(int id)
+        public bool IsFavouriteExistWithId(string userid)
         {
-            var favouriteExist = db.Fav.Find(x => x.Id == id).FirstOrDefault();
+            var favouriteExist = db.Fav.Find(x => x.UserId == userid).FirstOrDefault();
             if (favouriteExist != null)
             {
                 return true;

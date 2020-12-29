@@ -6,10 +6,10 @@ namespace favouriteAPI.Repository
     public interface IFavouriteRepo
     {
         List<Favourite> GetFavourites();
-        List<Favourite> GetFavourite(int id);
+        List<Favourite> GetFavourite(string userId);
         Favourite AddFavourite(Favourite favourite);
-        bool DeleteFavourite(int id, string title);
-        public bool IsFavouriteExistWithId(int id);
+        bool DeleteFavourite(string userId);
+        public bool IsFavouriteExistWithId(string userId);
         public bool IsFavouriteExist(Favourite favourite);
     }
 }

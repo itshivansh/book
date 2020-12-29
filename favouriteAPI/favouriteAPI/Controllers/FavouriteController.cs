@@ -30,12 +30,12 @@ namespace favouriteAPI.Controllers
             }
         }
         //[EnableCors("Policy1")]
-        [HttpGet("{id:int}")]
-        public IActionResult GetFavourite(int id)
+        [HttpGet("{userId}")]
+        public IActionResult GetFavourite(string userId )
         {
             try
             {
-                return Ok( _service.GetFavourite(id));
+                return Ok( _service.GetFavourite(userId));
             }
             catch (DatabaseNotFound ex)
             {
@@ -62,12 +62,12 @@ namespace favouriteAPI.Controllers
             //}
         }
        // [EnableCors("Policy3")]
-        [HttpDelete("{id:int}/{title}")]
-        public IActionResult Delete(int id, string title)
+        [HttpDelete("{userId}/{title}")]
+        public IActionResult Delete(string userId)
         {
             try
             {
-                return Ok(_service.DeleteFavourite(id, title));
+                return Ok(_service.DeleteFavourite(userId));
             }
             catch (DatabaseNotFound ex)
             {

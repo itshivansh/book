@@ -9,16 +9,16 @@ export class FavouriteService {
   private url="http://localhost:51409/api/";
   constructor(private http:HttpClient) { }
 
-  getFavourite(){
-     return this.http.get(this.url+"Favourite");
+  getFavourite(userId:any){
+     return this.http.get(this.url+"Favourite/"+userId);
   }
 
   postFavourite(body){
     return this.http.post(this.url+"Favourite/Add",body)
   }
 
-  deleteFavourite(id,title){
-    return this.http.delete(this.url+`Favourite/${id}/${title}`)
+  deleteFavourite(userId,title){
+    return this.http.delete(this.url+`Favourite/${userId}/${title}`)
   }
   
 }

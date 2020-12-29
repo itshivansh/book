@@ -14,13 +14,27 @@ export class FavouriteComponent implements OnInit {
   constructor(private favService:FavouriteService) { }
 
   ngOnInit(): void {
-    this.favService.getFavourite().subscribe(
+    var userId=localStorage.getItem('currentUser');
+    this.favService.getFavourite(userId).subscribe(
       list=>{
         console.log(list);
         this.favourite=list as string[];
         console.log(this.favourite);
+      },
+      err=>{
+    alert("No favourites")
       }
     )
   }
+  delete(item){
+    var title=item.title;
+    var userId=localStorage.getItem('currentUser');
+    this.favService.deleteFavourite(userId,title).subscribe(
+      data=>{
+        console.log(data);
+        this.ngOnInit();
+      }
+    )
 
+  }  
 }

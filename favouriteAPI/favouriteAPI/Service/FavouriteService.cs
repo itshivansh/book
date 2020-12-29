@@ -29,12 +29,12 @@ namespace favouriteAPI.Service
            
         }
 
-        public bool DeleteFavourite(int id, string title)
+        public bool DeleteFavourite(string userId)
         {         
-              var availability = repo.IsFavouriteExistWithId(id);
+              var availability = repo.IsFavouriteExistWithId(userId);
                 if (availability)
                 {
-                return repo.DeleteFavourite(id, title);
+                return repo.DeleteFavourite(userId);
                 }
                 else
                 {
@@ -43,12 +43,12 @@ namespace favouriteAPI.Service
                 
         }
 
-        public List<Favourite> GetFavourite(int id)
+        public List<Favourite> GetFavourite(string userId)
         {
-            var availability = repo.IsFavouriteExistWithId(id);
+            var availability = repo.IsFavouriteExistWithId(userId);
             if (availability)
             {
-                return repo.GetFavourite(id);
+                return repo.GetFavourite(userId);
             }
             else
             {

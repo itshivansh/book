@@ -6,8 +6,8 @@ namespace favouriteAPI.Service
     public interface IFavouriteService
     {
         List<Favourite> GetFavourites();
-        List<Favourite> GetFavourite(int id);
+        List<Favourite> GetFavourite(string userId);
         Favourite AddFavourite(Favourite favourite);
-        bool DeleteFavourite(int id, string title);
+        bool DeleteFavourite(string userId);
     }
 }

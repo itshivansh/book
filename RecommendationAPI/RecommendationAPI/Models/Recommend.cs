@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace RecommendationAPI.Models
 {
     public class Recommend
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
+        [JsonProperty("id")]
         public int Id { get; set; }
+        [JsonProperty("author")]
         public string Author { get; set; }
+        [JsonProperty("title")]
         public string Title { get; set; }
-        public string urlImg { get; set; }
-        public string webUrl { get; set; }
+        [JsonProperty("urlImg")]
+        public string UrlImg { get; set; }
+        [JsonProperty("webUrl")]
+        public string WebUrl { get; set; }
+        [JsonProperty("userId")]
         public string UserId { get; set; }
     }
 }

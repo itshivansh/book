@@ -15,6 +15,7 @@ import {DashboardComponent} from './Components/dashboard/dashboard.component';
 import { SearchService } from './Services/search.service';
 import { SearchComponent } from './Components/search/search.component';
 import { FavouriteComponent } from './Components/favourite/favourite.component';
+import { RecommendationComponent } from './Components/recommendation/recommendation.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FavouriteComponent } from './Components/favourite/favourite.component';
     DashboardComponent,
     SearchComponent,
     FavouriteComponent,
+    RecommendationComponent
   ],
   imports: [
     BrowserModule,

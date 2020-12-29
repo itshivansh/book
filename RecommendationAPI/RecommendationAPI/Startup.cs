@@ -27,41 +27,24 @@ namespace RecommendationAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            this.ValidateToken(Configuration, services);
-            //handling dependencies
-            services.AddScoped<RecommendContext>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+
+                builder => builder.AllowAnyOrigin()
+
+                .AllowAnyMethod()
+
+                .AllowAnyHeader()
+
+                );
+
+            });
             services.AddScoped<IRecommendRepository, RecommendRepository>();
             services.AddScoped<IRecommendService, RecommendService>();
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Recommend API", Version = "v1" });
-            //});
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "JWT Authorization header using the Bearer scheme."
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                          new OpenApiSecurityScheme
-                            {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
-                                }
-                            },
-                            new string[] {}
-                    }
-                });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Recommend API", Version = "v1" });
             });
         }
 
@@ -78,6 +61,10 @@ namespace RecommendationAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Recommend API V1");
             });
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();

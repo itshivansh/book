@@ -7,12 +7,14 @@ import {DashboardComponent} from './Components/dashboard/dashboard.component'
 import { SearchComponent } from './Components/search/search.component';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { FavouriteComponent } from './Components/favourite/favourite.component';
+import { RecommendationComponent } from './Components/recommendation/recommendation.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard',pathMatch:"full"},
   {path:'dashboard',component:DashboardComponent},
   {path:'search',component:SearchComponent},
   {path:'favourite',component:FavouriteComponent,canActivate:[AuthGuard]},
+  {path:'recommendation',component:RecommendationComponent,canActivate:[AuthGuard]},
   {path:'users',component:UsersComponent,
   children:[
     {path:'registration',component:RegistrationComponent},

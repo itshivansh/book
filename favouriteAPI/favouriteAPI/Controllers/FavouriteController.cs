@@ -17,7 +17,7 @@ namespace favouriteAPI.Controllers
             _service = service;
         }
         // GET: api/<FavouriteController>
-        [HttpGet]
+        [HttpGet("getFavourites")]
         public IActionResult Get()
         {
             try

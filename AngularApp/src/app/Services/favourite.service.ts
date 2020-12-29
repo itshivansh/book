@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class FavouriteService {
 
   private url="http://localhost:51409/api/";
+  private recUrl="http://localhost:64371/api/Recommend"
   constructor(private http:HttpClient) { }
 
   getFavourite(userId:any){
@@ -20,5 +21,8 @@ export class FavouriteService {
   deleteFavourite(userId,title){
     return this.http.delete(this.url+`Favourite/${userId}/${title}`)
   }
-  
+
+  getRecommendation(){
+    return this.http.get(this.recUrl);
+  }
 }

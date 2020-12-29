@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using RecommendationAPI.Models;
 using RecommendationAPI.Services;
-using RecommendationAPI.Utilities;
 
 namespace RecommendationAPI.Controllers
 {
-    [Authorize]
-    [ExceptionHandler]
     [Route("api/[controller]")]
     [ApiController]
     public class RecommendController : ControllerBase
@@ -23,25 +14,12 @@ namespace RecommendationAPI.Controllers
         {
             this.service = _service;
         }
-        [HttpGet("{id:int}")]
-        public IActionResult Get(int id)
+        [HttpGet()]
+        public async Task<IActionResult> GetRecommends()
         {
-            return Ok(service.GetRecommandsById(id));
+            var detailsExist = await service.GetRecommends();
+            return new OkObjectResult(detailsExist);
         }
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok(service.GetRecommends());
-        }
-        [HttpPost]
-        public IActionResult Post([FromBody] Recommend value)
-        {
-            return Created("", service.AddRecommands(value));
-        }
-        [HttpDelete("{id:int}/{title}")]
-        public IActionResult Delete(int id,string title)
-        {
-            return Ok(service.RemoveRecommend(id,title));
-        }
+
     }
 }

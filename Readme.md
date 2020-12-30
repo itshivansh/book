@@ -32,13 +32,12 @@
  3. Creating Recommendation API
 	* View all book recommendations from 3rd party books service provider (openlibrary.org) 
 	* Models -Recommendation.cs
-				  RecommendationContext.cs-----------MongoDb
 
-	* Repository-IRecommendationRepo.cs
-				RecommendationRepo.cs
+	* Repository-IRecommendRepository.cs
+				RecommendRepository.cs
 
-	* BussinessLayer-IRecommendationService.cs
-					RecommendationService.cs
+	* BussinessLayer-IRecommendService.cs
+					RecommendService.cs
 
-	* Contoller-RecommendationController.cs
+	* Contoller-RecommendController.cs
 

@@ -1,6 +1,7 @@
 ﻿using favouriteAPI.Exceptions;
 using favouriteAPI.Models;
 using favouriteAPI.Service;
+using FavouriteAPI.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,13 +24,13 @@ namespace favouriteAPI.Controllers
             {
                 return Ok(_service.GetFavourites());
             }
-            catch (DatabaseNotFound ex)
+            catch (FavouriteNotFound ex)
             {
                 return Conflict(ex.Message);
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("{userId}")]
         public IActionResult GetFavourite(string userId )
         {
@@ -37,13 +38,13 @@ namespace favouriteAPI.Controllers
             {
                 return Ok( _service.GetFavourite(userId));
             }
-            catch (DatabaseNotFound ex)
+            catch (FavouriteNotFound ex)
             {
                 return Conflict(ex.Message);
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [Route("Add")]
         public IActionResult AddFavourite([FromBody] Favourite fav)
@@ -52,7 +53,7 @@ namespace favouriteAPI.Controllers
             {              
                  return Created("", _service.AddFavourite(fav));
             }
-            catch (AlreadyFavourite ex)
+            catch (FavouriteNotFound ex)
             {
                 return Conflict(ex.Message);
             }
@@ -61,7 +62,7 @@ namespace favouriteAPI.Controllers
             //    return StatusCode(500, "Internal Server Error");
             //}
         }
-        [Authorize]
+       // [Authorize]
         [HttpDelete("{userId}/{title}")]
         public IActionResult Delete(string userId)
         {
@@ -69,7 +70,7 @@ namespace favouriteAPI.Controllers
             {
                 return Ok(_service.DeleteFavourite(userId));
             }
-            catch (DatabaseNotFound ex)
+            catch (FavouriteNotFound ex)
             {
                 return Conflict(ex.Message);
             }

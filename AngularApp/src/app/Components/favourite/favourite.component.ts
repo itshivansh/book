@@ -22,7 +22,7 @@ export class FavouriteComponent implements OnInit {
         console.log(this.favourite);
       },
       err=>{
-    alert("No favourites")
+    alert("No favourites :(")
       }
     )
   }

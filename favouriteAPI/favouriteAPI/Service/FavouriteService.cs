@@ -1,6 +1,7 @@
 ﻿using favouriteAPI.Exceptions;
 using favouriteAPI.Models;
 using favouriteAPI.Repository;
+using FavouriteAPI.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +24,7 @@ namespace favouriteAPI.Service
             }
             else
             {
-                throw new AlreadyFavourite(" already  Favourite");
+                throw new AlreadyFavourite("already exists in Favourites");
             }
            
         }
@@ -37,9 +38,8 @@ namespace favouriteAPI.Service
                 }
                 else
                 {
-                    throw new DatabaseNotFound("favourite does not exist");
+                    throw new FavouriteNotFound("favourite does not exist");
                 }
-                
         }
 
         public List<Favourite> GetFavourite(string userId)
@@ -51,9 +51,8 @@ namespace favouriteAPI.Service
             }
             else
             {
-                throw new DatabaseNotFound("data does not Exist");
-            }
-            
+                throw new FavouriteNotFound("favourite does not Exist");
+            }        
         }
 
         public List<Favourite> GetFavourites()

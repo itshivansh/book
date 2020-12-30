@@ -14,8 +14,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void{}
 
+  logedIn(){
+    return localStorage.getItem('token');
+    
+
+  }
   onLogout(){
     localStorage.removeItem('token');
+    alert("Logged out successfully!!!")
     this.router.navigate(['/users/login']);
   }
 }

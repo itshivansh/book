@@ -3,6 +3,7 @@ using System;
 
 namespace favouriteAPI.Models
 {
+    [BsonIgnoreExtraElements]
     public class Favourite
     {
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]

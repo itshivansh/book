@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit {
   onFav(items){
     if(localStorage.getItem('token')==null){
        this.router.navigate(['/users/login']);
-       alert("Please  Login first");
+       alert("Please Login first");
      }
     else{
       this.fav=new Favourite();
@@ -64,10 +64,10 @@ export class SearchComponent implements OnInit {
       this.favService.postFavourite(this.fav).subscribe(
         data=>{
           console.log(data);
-          alert("Added to favourite");
+          alert("Added to favourite list successfully");
         },
         err=>{
-          alert("Already Favourite");
+          alert("Already exists in favourite list");
         }
     );
   }

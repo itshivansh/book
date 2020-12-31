@@ -50,8 +50,11 @@ namespace AuthenticationService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
-            string constr = Configuration.GetConnectionString("AuthCon");
-            services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(constr));
+            string sqlConnection=Environment.GetEnvironmentVariable("SQL_CONNECTION");
+            if(sqlConnection==null){
+                sqlConnection = Configuration.GetConnectionString("AuthCon");
+            }
+            services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(sqlConnection));
             services.AddScoped<AuthDbContext>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAuthRepository, AuthRepository>();

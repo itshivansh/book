@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { RegistrationComponent } from '../Components/Users/registration/registration.component';
+import { RegistrationComponent } from '../Components/users/registration/registration.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Injectable({
   providedIn: 'root'

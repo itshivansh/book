@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using System;
 
 namespace favouriteAPI.Models
 {
@@ -10,7 +11,9 @@ namespace favouriteAPI.Models
         IMongoDatabase database;
         public FavouriteDbContext(IConfiguration config)
         {
-            client = new MongoClient(config.GetSection("MongoDB:server").Value);
+            // client = new MongoClient(config.GetSection("MongoDB:server").Value);
+            // database = client.GetDatabase(config.GetSection("MongoDB:db").Value);
+            client=new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
             database = client.GetDatabase(config.GetSection("MongoDB:db").Value);
         }
         public IMongoCollection<Favourite> Fav => database.GetCollection<Favourite>("Recommendation");
